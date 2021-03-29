@@ -32,94 +32,16 @@ $img-width: 45%;
     @media (min-width:1200px) { @content; }
 }
 
-.header {
-    font-family: Arial, Helvetica, sans-serif;
+//função para transformar px em rem
+@function calculateRem($size) {
+    @return $size / 16px * 1rem;
+}  
 
-    &__logo {
-         text-align: center;
-    }
+@mixin fontSize($size) {
+    font-size: calculateRem($size);
+} 
 
-    &__img {
-        max-width: 350px;
-    }
-   
-    .menu {
-        &__list {
-            display: flex;
-            justify-content: center;
-            border-top: 1px solid $light-grey;
-            border-bottom: 1px solid $light-grey;
-            margin-right: auto;
-            margin-left: auto;
-            width: 80%;
-            padding: 20px 0;
-            //adicionando as medias queries
-            @include for-phone-only {
-                width:90%;
-                padding:15px 0;
-                flex-wrap: wrap;
-            }
-            
-            @include for-tablet-only {
-                width:80%;
-                padding:20px 0;
-            } 
-
-            @include for-desktop-only {
-                width:80%;
-                padding:20px 0;
-            } 
-        }
-
-        &__links {
-            position: relative;
-            @include for-phone-only {
-                padding: 5px 0;
-            }
-
-            &:not(:last-child)::after {
-                content: "";
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                right: -3px;
-                margin:auto;
-                height: 15px;
-                width: 1px;
-                background-color: $light-grey;
-            }
-        }
-            &__link {
-                padding: 0 25px;
-                color: $grey;
-
-                &:hover {
-                    color: $red;
-                }
-            }
-    }
-}
-
-/*Este trecho se refere ao rodapé*/
-.footer {
-    text-align: center;
-    padding: 20px 0;
-    font-family: Arial, Helvetica, sans-serif;
-    //Este trecho posiciona o footer na parte de baixo
-    position: relative;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-
-    &__logo {
-        max-width: 100px;
-    }
-
-    &__txt {
-        margin: auto;
-        font-size: 14px;
-    }
-}
+@import '_header', '_footer', '_about', '_article';
 
 .main {
     display: flex;
@@ -144,7 +66,7 @@ $img-width: 45%;
 
     &__title {
         text-decoration: none;
-        font-size: 22px;
+        @include fontSize(22px);
         color: $grey;
         letter-spacing: 1.5;
 
@@ -304,167 +226,7 @@ $img-width: 45%;
     }
 }
 
-.about {
-    width: 80%;
-    margin: 0 auto 40px;
-    font-family: Arial, Helvetica, sans-serif;
 
-    &__title {
-        background-color: $light-grey;
-        text-align: center;
-        padding: 20px;
-    }
-
-    &__h1 {
-        font-size: 22px;
-        color: $grey;
-        letter-spacing: 1px;
-        margin-top: 5px;
-        margin-bottom: 10px;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .breadcrumb {
-        /*display: flex;
-        justify-content: center; serão trocados pelo mixin*/
-        @include flx(justify-content, center);
-        align-items: center;
-
-        //aqui entramos no bloco da classe breadcrumb
-        &__link {
-            font-size: 12px;
-            text-decoration: none;
-            color: $grey;
-
-            &:hover {
-                text-decoration: underline;
-                color: $red;
-            }
-        }
-
-        &__img {
-            width: 10px;
-            margin: 8px;
-        }
-
-    }
-//aqui voltamos ao bloco da classe about
-    &__img {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    &__intro {
-        font-weight: 100;
-        color: $grey;
-        width: 70%;
-        margin: 30px auto;
-        text-align: center;
-        font-size: 16px;
-    }
-
-    &__split {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        align-items: center;
-    }
-
-    &__img-description {
-        width: $img-width;
-    }
-//usando interpolação (cálculo css)
-    &__txt {
-        //width: calc(100% - 45%);
-        width: calc(100% - #{$img-width});
-    }
-
-    &__p {
-        font-size: 14px;
-        padding: 10px 20px;
-        color: $grey;
-    }
-
-}
-
-.article {
-    width: 80%;
-    margin: 0 auto 40px;
-    font-family: Arial, Helvetica, sans-serif;
-
-    &__title {
-        background-color: $light-grey;
-        text-align: center;
-        padding: 20px;
-    }
-
-    &__h1 {
-       font-size: 22px;
-       color: $grey;
-       letter-spacing: 1px;
-       margin-bottom: 10px;
-       margin-top: 5px;
-       margin-left: 0;
-       margin-right: 0; 
-    }
-
-
-    .breadcrumb {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &__link {
-            font-size: 12px;
-            @extend %no-decoration;
-            color: $grey;
-
-            &:hover {
-               @extend %u-decoration;
-               color: $red;
-            }
-        }
-
-        &__img {
-            width: 10px;
-            margin: 8px;
-        }
-    }
-
-    &__img {
-        margin-bottom: 20px;
-        width: 100%;
-    }
-
-    &__details {
-        /*display: flex;
-        justify-content: center; serão trocados pelo mixin*/
-        @include flx(justify-content, center);
-        align-items: center;
-    }
-
-    &__date {
-        margin: 0 10px;
-        font-size: 12px;
-        font-style: italic;
-    }
-
-    &__tag {
-        font-size: 14px;
-        padding: 5px 7px;
-        color: $red;
-        border: 1px solid $red;
-        margin: 0 10px;
-    }
-
-    &__content {
-        font-weight: 100;
-        font-size: 14px;
-        color: $grey;
-        padding: 10px 20px;
-    }
-}
 
 
 
