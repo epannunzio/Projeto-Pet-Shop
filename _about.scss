@@ -1,0 +1,83 @@
+.about {
+    width: 80%;
+    margin: 0 auto 40px;
+    font-family: Arial, Helvetica, sans-serif;
+
+    &__title {
+        background-color: $light-grey;
+        text-align: center;
+        padding: 20px;
+    }
+
+    &__h1 {
+        font-size: 22px;
+        color: $grey;
+        letter-spacing: 1px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+   .breadcrumb {
+   /*display: flex;
+   justify-content: center; serão trocados pelo mixin*/
+        @include flx(justify-content, center);
+            align-items: center;
+    
+        //aqui entramos no bloco da classe breadcrumb
+        &__link {
+           font-size: 12px;
+           text-decoration: none;
+           color: $grey;
+    
+           &:hover {
+               text-decoration: underline;
+               color: $red;
+            }
+        }
+    
+        &__img {
+           width: 10px;
+           margin: 8px;
+        }
+    }
+
+    //aqui voltamos ao bloco da classe about
+    &__img {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    &__intro {
+        font-weight: 100;
+        color: $grey;
+        width: 70%;
+        margin: 30px auto;
+        text-align: center;
+        font-size: 16px;
+    }
+    
+    &__split {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    
+    &__img-description {
+        width: $img-width;
+    }
+    //usando interpolação (cálculo css)
+    &__txt {
+    //width: calc(100% - 45%);
+    width: calc(100% - #{$img-width});
+    }
+    
+    &__p {
+        font-size: 14px;
+        padding: 10px 20px;
+        color: $grey;
+    }
+}
