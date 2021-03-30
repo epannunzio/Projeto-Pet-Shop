@@ -47,7 +47,8 @@
     //aqui voltamos ao bloco da classe about
     &__img {
         width: 100%;
-        margin-bottom: 20px;
+        @extend %double-margin-bottom;
+        //margin-bottom: 20px; substituido acima
     }
     
     &__intro {
