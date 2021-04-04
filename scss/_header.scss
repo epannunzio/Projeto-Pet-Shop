@@ -55,13 +55,13 @@
                 background-color: $light-grey;
             }
         }
-            &__link {
-                padding: 0 25px;
-                color: $grey;
+        &__link {
+            padding: 0 25px;
+            color: $grey;
 
-                &:hover {
-                    color: $red;
-                }
+            &:hover {
+                color: $red;
             }
+        }
     }
 }

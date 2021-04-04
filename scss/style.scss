@@ -41,7 +41,19 @@ $img-width: 45%;
     font-size: calculateRem($size);
 } 
 
-@import '_header', '_footer', '_about', '_article';
+@import 'header', 'footer', 'about', 'article', 'collection', 'contact';
+
+$directions: top, bottom, left, right;
+$layout-margin-size: 10px;
+
+//placeholders selectors
+@each $direction in $directions {
+    %no-margin-#{$direction} {margin-#{$direction}: 0;}
+    %default-margin-#{$direction} {margin-#{$direction}: $layout-margin-size}
+    %double-margin-#{$direction} {margin-#{$direction}: $layout-margin-size * 2;}
+    %half-margin-#{$direction} {margin-#{$direction}: $layout-margin-size / 2;}
+
+}
 
 .main {
     display: flex;
@@ -79,12 +91,15 @@ $img-width: 45%;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 10px;
+        @extend %default-margin-top, %double-margin-bottom; 
+        /*margin-top: 10px;
         margin-bottom: 20px;
+        substituidos pelos placeholders selectors acima*/
     }
 
     &__date {
-        margin: 0 10px;
+        @extend %no-margin-top, %no-margin-bottom, %default-margin-left, %default-margin-right;
+        //margin: 0 10px; substituido acima
         font-size: 12px;
         font-style: italic;
     }
@@ -94,7 +109,8 @@ $img-width: 45%;
         padding: 5px 7px;
         color: $red;
         border:1px solid $red;
-        margin: 0 10px;
+        @extend %no-margin-top, %no-margin-bottom, %default-margin-left, %default-margin-right;
+        //margin: 0 10px; substituido acima
     }
 
     &__details {
@@ -193,14 +209,15 @@ $img-width: 45%;
             flex-wrap: wrap;
             align-items: center;
             padding: 15px 0;
+            
 
             &:not(:last-child) {
                 border-bottom: 1px dashed $light-grey;
             }
-
-        &__img {
-            width: 40%;
-        }
+            
+            .sidebar__img {
+                width: 150px;
+            }
 
         &__details {
             width: 50%;
